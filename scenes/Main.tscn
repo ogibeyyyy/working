@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4e70jg0g3oyu"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_4l7yl"]
+[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="2_62g17"]
+[ext_resource type="PackedScene" path="res://scenes/Obstacle.tscn" id="3_8x25g"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2c70t"]
+normal = Vector2(0, -1)
+distance = -520.0
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_4l7yl")
+obstacle_scene = ExtResource("3_8x25g")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1024.0
+offset_bottom = 600.0
+color = Color(0.968627, 0.929412, 0.803922, 1)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape2D_2c70t")
+
+[node name="GroundVisual" type="Polygon2D" parent="."]
+color = Color(0.65098, 0.839216, 0.462745, 1)
+polygon = PackedVector2Array(0, 520, 1024, 520, 1024, 600, 0, 600)
+
+[node name="Player" parent="." instance=ExtResource("2_62g17")]
+position = Vector2(180, 492)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ScoreTimer" type="Timer" parent="."]
+wait_time = 1.0
+autostart = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/HUD"]
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 234.0
+offset_bottom = 63.0
+text = "Skor: 0"
+
+[node name="StatusLabel" type="Label" parent="CanvasLayer/HUD"]
+offset_left = 24.0
+offset_top = 66.0
+offset_right = 556.0
+offset_bottom = 108.0
+text = "Zıplamak için ekrana dokun!"
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/HUD"]
+visible = false
+offset_left = 24.0
+offset_top = 120.0
+offset_right = 226.0
+offset_bottom = 172.0
+text = "Tekrar Oyna"
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
