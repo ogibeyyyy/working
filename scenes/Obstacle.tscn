@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/obstacle.gd" id="1_n7x2h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6k6w0"]
-size = Vector2(44, 70)
+size = Vector2(44, 56)
 
 [node name="Obstacle" type="Area2D"]
 script = ExtResource("1_n7x2h")
@@ -15,4 +15,4 @@ shape = SubResource("RectangleShape2D_6k6w0")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.956863, 0.415686, 0.415686, 1)
-polygon = PackedVector2Array(-22, -35, 22, -35, 22, 35, -22, 35)
+polygon = PackedVector2Array(-22, -28, 22, -28, 22, 28, -22, 28)

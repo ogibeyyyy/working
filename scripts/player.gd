@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var gravity: float = 1600.0
-@export var jump_force: float = -520.0
+@export var jump_force: float = -640.0
 @export var max_fall_speed: float = 1200.0
 
 var alive: bool = true
