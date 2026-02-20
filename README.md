@@ -55,6 +55,10 @@ Sonra Godot'da `Import` ile `project.godot` dosyasını aç.
 - `scenes/Obstacle.tscn`: Engel sahnesi
 - `scripts/*.gd`: Oyun mantığı
 
+## App Store'a yükleme
+
+Detaylı iOS/App Store adımları için: `APP_STORE_YAYIN_REHBERI.md`
+
 ## Not
 
 Bu sürüm MVP odaklıdır: tek tuş zıplama, skor, çarpışma, tekrar başlatma.
